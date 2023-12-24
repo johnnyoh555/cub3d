@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 18:57:23 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/24 20:57:04 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_info
 	int		**map;
 	int		start_x;
 	int		start_y;
+	int		start_direction;
 }	t_info;
 
 // all_directions.c

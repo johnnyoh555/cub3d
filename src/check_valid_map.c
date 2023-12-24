@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 18:23:03 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 19:07:39 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/24 20:57:32 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ static void	check_when_notmap(t_info *info, int x, int y)
 		err_seq("map", "not a valid map", 1, 0);
 }
 
+static void	start_info(t_info *info, int x, int y)
+{
+	info->start_x = x;
+	info->start_y = y;
+	info->start_direction = info->map[y][x];
+}
+
 void	check_valid_map(t_info *info)
 {
 	int	x;
@@ -83,6 +90,9 @@ void	check_valid_map(t_info *info)
 					|| x == 0 || x == info->width - 1)
 					err_seq("map", "not a valid map", 1, 0);
 				check_when_path(info, x, y);
+				if (info->map[y][x] >= M_SPAWN_N
+					&& info->map[y][x] <= M_SPAWN_W)
+					start_info(info, x, y);
 			}
 			x++;
 		}
