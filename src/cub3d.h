@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 20:57:04 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/25 16:56:28 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define SCN_WIDTH 1920
+# define SCN_HEIGHT 1080
+
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
+
+# define C_ANGLE 5
+
+# include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -21,6 +30,7 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "mlx.h"
 
 typedef enum e_mapinfo
 {
@@ -55,6 +65,46 @@ typedef struct s_info
 	int		start_direction;
 }	t_info;
 
+typedef struct s_texture
+{
+	int		width;
+	int		height;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+}	t_texture;
+
+typedef struct s_render
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_render;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+}	t_mlx;
+
+typedef struct s_cub3d
+{
+	t_mlx		mlx;
+	t_render	render;
+	t_texture	texture[4];
+	t_info		info;
+}	t_cub3d;
+
 // all_directions.c
 void	check_identifier(t_info *info, char *str);
 
@@ -77,5 +127,19 @@ int		ft_strcmp(const char *s1, const char *s2);
 
 // check_valid_map.c
 void	check_valid_map(t_info *info);
+
+int		cub3d_init(t_cub3d *cub3d);
+int		cub3d_exit(t_cub3d *cub3d);
+
+int		read_key(int keycode, t_cub3d *cub3d);
+
+void	move_foward(t_cub3d *cub3d);
+void	move_back(t_cub3d *cub3d);
+void	move_left(t_cub3d *cub3d);
+void	move_right(t_cub3d *cub3d);
+
+void	camera_rotate(t_cub3d *cub3d, int dir);
+
+int		rendering(t_cub3d *cub3d);
 
 #endif

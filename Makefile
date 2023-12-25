@@ -1,7 +1,8 @@
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 SRCS		= ./src/all_directions.c ./src/color_identifier.c ./src/info.c \
-./src/main.c ./src/make_map.c ./src/map_size.c ./src/utils.c ./src/check_valid_map.c
+./src/main.c ./src/make_map.c ./src/map_size.c ./src/utils.c ./src/check_valid_map.c\
+./src/cub3d_init.c ./src/camera.c ./src/keyboard.c ./src/move.c ./src/rendering.c
 OBJS		= $(SRCS:.c=.o)
 NAME		= cub3d
 LIBFT_DIR 	= libft
@@ -11,7 +12,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -o $@ $^ -lft -L./$(LIBFT_DIR)
+	$(CC) $(CFLAGS) -o $@ $^ -lmlx -framework Appkit -framework OpenGL -lft -L./$(LIBFT_DIR)
 
 $(OBJS): %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

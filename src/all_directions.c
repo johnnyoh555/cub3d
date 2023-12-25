@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_directions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:31:59 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 17:46:27 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/25 18:18:52 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,65 @@
 
 static void	identifier_no(t_info *info, char *str)
 {
+	char	*trim;
+	
 	if (info->no_file != 0)
 		err_seq("map", "NO identifier overlapped", 1, 0);
 	while (*str == ' ')
 		str++;
 	if (*str == '\n' || *str == 0)
 		err_seq("map", "no infomation for NO identifier", 1, 0);
-	info->no_file = ft_strdup(str);
+	trim = ft_strdup(str);
+	info->no_file = ft_strtrim(trim, "\n");
+	free(trim);
 	info->cnt++;
 }
 
 static void	identifier_so(t_info *info, char *str)
 {
+	char	*trim;
+
 	if (info->so_file != 0)
 		err_seq("map", "SO identifier overlapped", 1, 0);
 	while (*str == ' ')
 		str++;
 	if (*str == '\n' || *str == 0)
 		err_seq("map", "no infomation for SO identifier", 1, 0);
-	info->so_file = ft_strdup(str);
+	trim = ft_strdup(str);
+	info->so_file = ft_strtrim(trim, "\n");
+	free(trim);
 	info->cnt++;
 }
 
 static void	identifier_we(t_info *info, char *str)
 {
+	char	*trim;
+
 	if (info->we_file != 0)
 		err_seq("map", "WE identifier overlapped", 1, 0);
 	while (*str == ' ')
 		str++;
 	if (*str == '\n' || *str == 0)
 		err_seq("map", "no infomation for WE identifier", 1, 0);
-	info->we_file = ft_strdup(str);
+	trim = ft_strdup(str);
+	info->we_file = ft_strtrim(trim, "\n");
+	free(trim);
 	info->cnt++;
 }
 
 static void	identifier_ea(t_info *info, char *str)
 {
+	char	*trim;
+
 	if (info->ea_file != 0)
 		err_seq("map", "EA identifier overlapped", 1, 0);
 	while (*str == ' ')
 		str++;
 	if (*str == '\n' || *str == 0)
 		err_seq("map", "no infomation for EA identifier", 1, 0);
-	info->ea_file = ft_strdup(str);
+	trim = ft_strdup(str);
+	info->ea_file = ft_strtrim(trim, "\n");
+	free(trim);
 	info->cnt++;
 }
 

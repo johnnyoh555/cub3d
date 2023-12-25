@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:07:42 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 18:09:38 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/25 17:49:00 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	main(int ac, char **av)
 {
-	t_info	info;
+	t_cub3d	*cub3d;
 
-	init_info(&info, ac, av);
-	for(int y = 0; y < info.height; y++)
-	{
-		for(int x = 0; x < info.width; x++)
-			printf("%d", info.map[y][x]);
-		printf("\n");
-	}
+	cub3d = ft_calloc(1, sizeof(t_cub3d));
+	ft_memset(cub3d, 0, sizeof(t_cub3d));
+	init_info(&cub3d->info, ac, av);
+	if (cub3d_init(cub3d) == 1)
+		exit(1);
 	return (0);
 }

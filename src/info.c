@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 08:38:28 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 19:07:20 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/25 17:58:52 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	check_map_file(t_info *info)
 	if (info->start_point == 0)
 		err_seq("map", "none starting position", 1, 0);
 	if (info->start_point != 1)
-		err_seq("map", "to much starting positions", 1, 0);	
+		err_seq("map", "to much starting positions", 1, 0);
 	close(fd);
 }
 
