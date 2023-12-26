@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:31:59 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/25 18:18:52 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:18:49 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	identifier_no(t_info *info, char *str)
 {
 	char	*trim;
-	
+
 	if (info->no_file != 0)
 		err_seq("map", "NO identifier overlapped", 1, 0);
 	while (*str == ' ')

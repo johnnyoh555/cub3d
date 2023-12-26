@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/25 17:55:03 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:17:37 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,15 +122,26 @@ int rendering(t_cub3d *cub3d)
 		
 		int texX = (int)(wallX * 64);
 		if (side == 0 && raydir_x > 0)
+		{
+			texNum = 0;
 			texX = 64 - texX - 1;
+		}
+		else if (side == 0 && raydir_x <= 0)
+			texNum = 1;
 		if (side == 1 && raydir_y < 0)
+		{
+			texNum = 2;
 			texX = 64 - texX - 1;
+		}
+		else if (side == 1 && raydir_y >= 0)
+			texNum = 3;
 		
 		double step = 1.0 * TEXTURE_HEIGHT / lineHeight;
 		double texPos = (drawStart - pitch - SCN_HEIGHT / 2 + lineHeight / 2) * step;
 		for (int y = drawStart; y < drawEnd; y++)
 		{
 			int texY = (int)texPos & (TEXTURE_HEIGHT - 1);
+			texPos += step;
 			unsigned int color = *(unsigned int *)(cub3d->texture[texNum].addr + (cub3d->texture[texNum].line * texY + texX * (cub3d->texture[texNum].bpp / 8)));
 			char *dst = cub3d->mlx.addr + (y * cub3d->mlx.line + x * (cub3d->mlx.bpp / 8));
 			*(unsigned int*)dst = color;

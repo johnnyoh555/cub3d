@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/25 18:14:42 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:10:14 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static int	cub3d_texture_init(t_cub3d *cub3d)
 		file = cub3d_texture_idx_to_file(idx, cub3d);
 		cub3d->texture[idx].img = mlx_xpm_file_to_image(cub3d->mlx.mlx, file, \
 					&cub3d->texture[idx].width, &cub3d->texture[idx].height);
-		printf("file : %s\n", file);
 		if (cub3d->texture[idx].img == NULL)
 			return (1);
 		cub3d->texture[idx].addr = mlx_get_data_addr(cub3d->texture[idx].img, \
