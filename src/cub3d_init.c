@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/27 11:06:22 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/27 20:20:37 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	cub3d_init(t_cub3d *cub3d)
 	if (cub3d_texture_init(cub3d) == 1)
 		return (1);
 	mlx_hook(cub3d->mlx.win, 2, 0, read_key, cub3d);
-	mlx_hook(cub3d->mlx.win, 6, 0, read_mouse, cub3d); 
+	mlx_hook(cub3d->mlx.win, 6, 0, read_mouse, cub3d);
 	mlx_hook(cub3d->mlx.win, 17, 0, cub3d_exit, cub3d);
 	mlx_loop_hook(cub3d->mlx.mlx, rendering, cub3d);
 	mlx_loop(cub3d->mlx.mlx);

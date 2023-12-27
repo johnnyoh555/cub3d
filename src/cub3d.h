@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/27 11:10:17 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/27 19:53:56 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,33 @@ typedef struct s_info
 	int		start_direction;
 }	t_info;
 
+typedef struct s_raycast
+{
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	prep_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_num;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	tex_pos;
+	double	step;
+}	t_raycast;
+
 typedef struct s_texture
 {
 	int		width;
@@ -84,7 +111,9 @@ typedef struct s_render
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	int		m_pos_x;
+	int		pre_x;
+	int		pre_y;
+	int		pre_dir;
 }	t_render;
 
 typedef struct s_mlx
@@ -142,6 +171,11 @@ void	move_right(t_cub3d *cub3d);
 int		read_mouse(int x, int y, t_cub3d *cub3d);
 
 void	camera_rotate(t_cub3d *cub3d, int dir);
+
+void	raycast_init(t_raycast *raycast, t_cub3d *cub3d, int x);
+void	raycast_cal_side_dist(t_raycast *raycast, t_cub3d *cub3d);
+void	raycast_find_wall(t_raycast *raycast, t_cub3d *cub3d);
+void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d);
 
 int		rendering(t_cub3d *cub3d);
 
