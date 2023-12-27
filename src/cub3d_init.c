@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/26 13:10:14 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/27 11:06:22 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	cub3d_exit(t_cub3d *cub3d)
 
 static void	cub3d_render_init(t_cub3d *cub3d)
 {
-	cub3d->render.pos_x = cub3d->info.start_y;
-	cub3d->render.pos_y = cub3d->info.start_x;
+	cub3d->render.pos_x = cub3d->info.start_y + 0.5;
+	cub3d->render.pos_y = cub3d->info.start_x + 0.5;
 	cub3d->render.dir_x = 0;
 	cub3d->render.dir_y = 0;
 	if (cub3d->info.start_direction == M_SPAWN_N)
@@ -86,6 +86,7 @@ int	cub3d_init(t_cub3d *cub3d)
 	if (cub3d_texture_init(cub3d) == 1)
 		return (1);
 	mlx_hook(cub3d->mlx.win, 2, 0, read_key, cub3d);
+	mlx_hook(cub3d->mlx.win, 6, 0, read_mouse, cub3d); 
 	mlx_hook(cub3d->mlx.win, 17, 0, cub3d_exit, cub3d);
 	mlx_loop_hook(cub3d->mlx.mlx, rendering, cub3d);
 	mlx_loop(cub3d->mlx.mlx);

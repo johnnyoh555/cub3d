@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/25 16:56:28 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/27 11:10:17 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_render
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	int		m_pos_x;
 }	t_render;
 
 typedef struct s_mlx
@@ -137,6 +138,8 @@ void	move_foward(t_cub3d *cub3d);
 void	move_back(t_cub3d *cub3d);
 void	move_left(t_cub3d *cub3d);
 void	move_right(t_cub3d *cub3d);
+
+int		read_mouse(int x, int y, t_cub3d *cub3d);
 
 void	camera_rotate(t_cub3d *cub3d, int dir);
 
