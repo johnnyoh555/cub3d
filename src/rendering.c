@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/27 20:25:42 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/29 14:01:56 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	rendering(t_cub3d *cub3d)
 		draw_raycast(&raycast, cub3d, x);
 		x++;
 	}
+	minimap(cub3d);
 	mlx_put_image_to_window(cub3d->mlx.mlx, cub3d->mlx.win, \
 							cub3d->mlx.img, 0, 0);
 	return (0);

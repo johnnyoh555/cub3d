@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/27 19:53:56 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/29 14:03:31 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,8 @@ void	raycast_find_wall(t_raycast *raycast, t_cub3d *cub3d);
 void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d);
 
 int		rendering(t_cub3d *cub3d);
+
+// minimap.c
+void	minimap(t_cub3d *cub3d);
 
 #endif
