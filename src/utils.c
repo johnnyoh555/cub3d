@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:19:59 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 18:48:30 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/29 20:23:09 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,15 @@ int	ft_strcmp(const char *s1, const char *s2)
 		str2++;
 	}
 	return (0);
+}
+
+long	get_time(void)
+{
+	struct timeval	tv;
+	long			time;
+
+	if (gettimeofday(&tv, 0) == -1)
+		err_seq("time", "failed to get current time", 1, 0);
+	time = (tv.tv_sec * 10) + (tv.tv_usec / 100000);
+	return (time);
 }

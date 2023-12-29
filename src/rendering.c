@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/29 14:01:56 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/29 20:36:19 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ void	draw_raycast(t_raycast *raycast, t_cub3d *cub3d, int x)
 	}
 }
 
+static void	check_door(t_cub3d *cub3d)
+{
+	if (cub3d->door_flag == 1)
+		return ;
+	if (cub3d->time + 50 < get_time() && \
+		cub3d->info.map[(int)cub3d->render.pos_x][(int)cub3d->render.pos_y] \
+		!= M_DOOR)
+		cub3d->door_flag = 1;
+}
+
 int	rendering(t_cub3d *cub3d)
 {
 	int			x;
@@ -72,6 +82,7 @@ int	rendering(t_cub3d *cub3d)
 
 	draw_background(cub3d);
 	x = 0;
+	check_door(cub3d);
 	while (x < SCN_WIDTH)
 	{
 		raycast_init(&raycast, cub3d, x);

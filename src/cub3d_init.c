@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/28 15:53:50 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/29 18:27:27 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	cub3d_render_init(t_cub3d *cub3d)
 		cub3d->render.dir_y = -1;
 	cub3d->render.plane_x = 0;
 	cub3d->render.plane_y = 1;
+	cub3d->door_flag = 1;
+	cub3d->time = 0;
 }
 
 static char	*cub3d_texture_idx_to_file(int idx, t_cub3d *cub3d)
@@ -49,8 +51,16 @@ static char	*cub3d_texture_idx_to_file(int idx, t_cub3d *cub3d)
 		return (cub3d->info.so_file);
 	else if (idx == 2)
 		return (cub3d->info.ea_file);
-	else
+	else if (idx == 3)
 		return (cub3d->info.we_file);
+	else if (idx == 4)
+		return ("./door1.xpm");
+	else if (idx == 5)
+		return ("./door2.xpm");
+	else if (idx == 6)
+		return ("./door3.xpm");
+	else
+		return ("./door4.xpm");
 }
 
 static int	cub3d_texture_init(t_cub3d *cub3d)
@@ -59,7 +69,7 @@ static int	cub3d_texture_init(t_cub3d *cub3d)
 	char	*file;
 
 	idx = 0;
-	while (idx < 4)
+	while (idx < 8)
 	{
 		file = cub3d_texture_idx_to_file(idx, cub3d);
 		cub3d->texture[idx].img = mlx_xpm_file_to_image(cub3d->mlx.mlx, file, \

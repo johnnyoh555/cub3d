@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:35:50 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/27 20:42:41 by sungyoon         ###   ########.fr       */
+/*   Updated: 2023/12/29 20:27:12 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ void	move_foward(t_cub3d *cub3d)
 
 	cal_x = cub3d->render.pos_x + cub3d->render.dir_x / 3;
 	cal_y = cub3d->render.pos_y + cub3d->render.dir_y / 3;
-	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH)
+	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH
+		&& !(cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] == M_DOOR
+		&& cub3d->door_flag))
 		cub3d->render.pos_x += cub3d->render.dir_x / 3;
-	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH)
+	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH
+		&& !(cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] == M_DOOR
+		&& cub3d->door_flag))
 		cub3d->render.pos_y += cub3d->render.dir_y / 3;
 }
 
@@ -32,9 +36,13 @@ void	move_back(t_cub3d *cub3d)
 
 	cal_x = cub3d->render.pos_x - cub3d->render.dir_x / 3;
 	cal_y = cub3d->render.pos_y - cub3d->render.dir_y / 3;
-	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH)
+	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH
+		&& !(cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] == M_DOOR
+		&& cub3d->door_flag))
 		cub3d->render.pos_x -= cub3d->render.dir_x / 3;
-	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH)
+	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH
+		&& !(cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] == M_DOOR
+		&& cub3d->door_flag))
 		cub3d->render.pos_y -= cub3d->render.dir_y / 3;
 }
 
@@ -45,9 +53,13 @@ void	move_left(t_cub3d *cub3d)
 
 	cal_x = cub3d->render.pos_x - cub3d->render.dir_y / 3;
 	cal_y = cub3d->render.pos_y + cub3d->render.dir_x / 3;
-	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH)
+	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH
+		&& !(cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] == M_DOOR
+		&& cub3d->door_flag))
 		cub3d->render.pos_x -= cub3d->render.dir_y / 3;
-	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH)
+	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH
+		&& !(cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] == M_DOOR
+		&& cub3d->door_flag))
 		cub3d->render.pos_y += cub3d->render.dir_x / 3;
 }
 
@@ -56,10 +68,14 @@ void	move_right(t_cub3d *cub3d)
 	double	cal_x;
 	double	cal_y;
 
-	cal_x = cub3d->render.pos_x + cub3d->render.dir_y / 4;
-	cal_y = cub3d->render.pos_y - cub3d->render.dir_x / 4;
-	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH)
-		cub3d->render.pos_x += cub3d->render.dir_y / 4;
-	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH)
-		cub3d->render.pos_y -= cub3d->render.dir_x / 4;
+	cal_x = cub3d->render.pos_x + cub3d->render.dir_y / 3;
+	cal_y = cub3d->render.pos_y - cub3d->render.dir_x / 3;
+	if (cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] >= M_PATH
+		&& !(cub3d->info.map[(int)cal_x][(int)(cub3d->render.pos_y)] == M_DOOR
+		&& cub3d->door_flag))
+		cub3d->render.pos_x += cub3d->render.dir_y / 3;
+	if (cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] >= M_PATH
+		&& !(cub3d->info.map[(int)(cub3d->render.pos_x)][(int)cal_y] == M_DOOR
+		&& cub3d->door_flag))
+		cub3d->render.pos_y -= cub3d->render.dir_x / 3;
 }

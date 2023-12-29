@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 14:03:31 by jooh             ###   ########.fr       */
+/*   Updated: 2023/12/29 19:53:09 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 # include <string.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <sys/time.h>
+
+# include "mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
-# include "mlx.h"
 
 typedef enum e_mapinfo
 {
@@ -41,6 +43,7 @@ typedef enum e_mapinfo
 	M_SPAWN_S,
 	M_SPAWN_E,
 	M_SPAWN_W,
+	M_DOOR,
 }	t_mapinfo;
 
 typedef struct s_info
@@ -90,6 +93,7 @@ typedef struct s_raycast
 	int		tex_y;
 	double	tex_pos;
 	double	step;
+	int		sprit;
 }	t_raycast;
 
 typedef struct s_texture
@@ -131,8 +135,10 @@ typedef struct s_cub3d
 {
 	t_mlx		mlx;
 	t_render	render;
-	t_texture	texture[4];
+	t_texture	texture[8];
 	t_info		info;
+	long		time;
+	int			door_flag;
 }	t_cub3d;
 
 // all_directions.c
@@ -154,6 +160,7 @@ void	check_map_size(t_info *info, char *str);
 // utils.c
 int		err_seq(char *str, char *err, int ex, int flag);
 int		ft_strcmp(const char *s1, const char *s2);
+long	get_time(void);
 
 // check_valid_map.c
 void	check_valid_map(t_info *info);
