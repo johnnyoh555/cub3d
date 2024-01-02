@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/02 15:24:22 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 19:17:05 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,9 @@ typedef struct s_cub3d
 	t_info		info;
 	long		time;
 	int			door_flag;
+	int			move_door;
+	int			open_door;
+	int			close;
 }	t_cub3d;
 
 // all_directions.c
@@ -196,5 +199,8 @@ void	minimap(t_cub3d *cub3d);
 
 void	check_sprit_door(t_raycast *raycast, t_cub3d *cub3d);
 void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x);
+
+void	close_door(t_cub3d *cub3d);
+void	open_door(t_cub3d *cub3d);
 
 #endif

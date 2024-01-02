@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/29 18:27:27 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 19:25:27 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	cub3d_render_init(t_cub3d *cub3d)
 	cub3d->render.plane_y = 1;
 	cub3d->door_flag = 1;
 	cub3d->time = 0;
+	cub3d->open_door = 0;
+	cub3d->move_door = 1;
 }
 
 static char	*cub3d_texture_idx_to_file(int idx, t_cub3d *cub3d)

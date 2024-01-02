@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:04:26 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/02 15:25:48 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 19:20:29 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	raycast_find_wall(t_raycast *raycast, t_cub3d *cub3d)
 			raycast->side = 1;
 		}
 		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_SPRIT
-			|| (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR
-			&& cub3d->door_flag))
+			|| (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR))
 			check_sprit_door(raycast, cub3d);
 		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_WALL)
 			raycast->hit = 1;

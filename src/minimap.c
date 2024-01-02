@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 13:14:28 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 20:32:12 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 19:16:37 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int	minimap_color(t_cub3d *cub3d, int x, int y)
 		|| pos_y >= cub3d->info.height || (cub3d->info.map[pos_y][pos_x] != 1
 		&& cub3d->info.map[pos_y][pos_x] != 7))
 		return (0xdcccac);
-	if (cub3d->info.map[pos_y][pos_x] == 7 && cub3d->door_flag == 1)
+	if (cub3d->info.map[pos_y][pos_x] == 7 && cub3d->move_door == 1)
 		return (0);
-	if (cub3d->info.map[pos_y][pos_x] == 7 && !cub3d->door_flag)
+	if (cub3d->info.map[pos_y][pos_x] == 7 && !cub3d->move_door)
 		return (0xffff33);
 	return (0x5f4541);
 }

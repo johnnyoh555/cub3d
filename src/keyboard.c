@@ -6,13 +6,13 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:35:01 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/29 20:17:40 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 19:18:42 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	open_door(t_cub3d *cub3d)
+static void	open_door_flag(t_cub3d *cub3d)
 {
 	if (cub3d->door_flag == 0)
 		return ;
@@ -33,6 +33,6 @@ int	read_key(int keycode, t_cub3d *cub3d)
 	else if (keycode == 53)
 		cub3d_exit(cub3d);
 	else if (keycode == 49)
-		open_door(cub3d);
+		open_door_flag(cub3d);
 	return (0);
 }

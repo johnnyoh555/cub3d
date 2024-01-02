@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/02 15:23:16 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 19:26:24 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,17 @@ static void	check_door(t_cub3d *cub3d)
 {
 	if (cub3d->door_flag == 1)
 		return ;
-	if (cub3d->time + 50 < get_time() && \
+	if (cub3d->move_door == 1 && cub3d->close == 0)
+		open_door(cub3d);
+	else if (cub3d->time + 50 < get_time() && \
 		cub3d->info.map[(int)cub3d->render.pos_x][(int)cub3d->render.pos_y] \
-		!= M_DOOR)
-		cub3d->door_flag = 1;
+		!= M_DOOR && cub3d->move_door == 0)
+	{
+		cub3d->move_door = 1;
+		cub3d->close = 1;
+	}
+	else if (cub3d->close == 1)
+		close_door(cub3d);
 }
 
 int	rendering(t_cub3d *cub3d)
