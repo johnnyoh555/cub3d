@@ -6,14 +6,29 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 18:23:03 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 17:09:59 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 20:18:41 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	check_valid_door(t_info *info, int x, int y)
+{
+	int	flag;
+
+	flag = 0;
+	if (info->map[y][x - 1] == M_WALL && info->map[y][x + 1] == M_WALL)
+		flag = 1;
+	if (info->map[y - 1][x] == M_WALL && info->map[y + 1][x] == M_WALL)
+		flag = 1;
+	if (flag == 0)
+		err_seq("door", "not a valid door", 1, 0);
+}
+
 static void	check_when_path(t_info *info, int x, int y)
 {
+	if (info->map[y][x] == M_DOOR)
+		check_valid_door(info, x, y);
 	if (!(info->map[y][x - 1] >= M_WALL))
 		err_seq("map", "not a valid map", 1, 0);
 	if (!(info->map[y - 1][x - 1] >= M_WALL))
@@ -80,7 +95,7 @@ void	check_valid_map(t_info *info)
 		{
 			if (info->map[y][x] == M_NO)
 				check_when_notmap(info, x, y);
-			if (info->map[y][x] >= M_PATH && info->map[y][x] <= M_SPAWN_W)
+			if (info->map[y][x] >= M_PATH)
 			{
 				if (y == 0 || y == info->height - 1
 					|| x == 0 || x == info->width - 1)
