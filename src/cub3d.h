@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 19:53:09 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 15:24:22 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef enum e_mapinfo
 	M_SPAWN_E,
 	M_SPAWN_W,
 	M_DOOR,
+	M_SPRIT,
 }	t_mapinfo;
 
 typedef struct s_info
@@ -80,10 +81,13 @@ typedef struct s_raycast
 	double	delta_dist_x;
 	double	delta_dist_y;
 	double	prep_wall_dist;
+	double	prep_door_dist;
+	double	prep_sprit_dist;
 	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
+	int		side_d;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -94,6 +98,7 @@ typedef struct s_raycast
 	double	tex_pos;
 	double	step;
 	int		sprit;
+	int		door;
 }	t_raycast;
 
 typedef struct s_texture
@@ -188,5 +193,8 @@ int		rendering(t_cub3d *cub3d);
 
 // minimap.c
 void	minimap(t_cub3d *cub3d);
+
+void	check_sprit_door(t_raycast *raycast, t_cub3d *cub3d);
+void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x);
 
 #endif

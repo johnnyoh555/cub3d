@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/29 20:36:19 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 15:23:16 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	rendering(t_cub3d *cub3d)
 		raycast_find_wall(&raycast, cub3d);
 		raycast_cal_and_sel_wall(&raycast, cub3d);
 		draw_raycast(&raycast, cub3d, x);
+		if (raycast.door)
+			cal_door(&raycast, cub3d, x);
 		x++;
 	}
 	minimap(cub3d);

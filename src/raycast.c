@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:04:26 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/29 20:36:32 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/02 15:25:48 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	raycast_init(t_raycast *raycast, t_cub3d *cub3d, int x)
 	else
 		raycast->delta_dist_y = fabs(1 / raycast->raydir_y);
 	raycast->hit = 0;
+	raycast->door = 0;
+	raycast->sprit = 0;
 }
 
 void	raycast_cal_side_dist(t_raycast *raycast, t_cub3d *cub3d)
@@ -74,31 +76,17 @@ void	raycast_find_wall(t_raycast *raycast, t_cub3d *cub3d)
 			raycast->map_y += raycast->step_y;
 			raycast->side = 1;
 		}
-		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_WALL
+		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_SPRIT
 			|| (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR
 			&& cub3d->door_flag))
+			check_sprit_door(raycast, cub3d);
+		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_WALL)
 			raycast->hit = 1;
 	}
 	if (raycast->side == 0)
 		raycast->prep_wall_dist = raycast->side_dist_x - raycast->delta_dist_x;
 	else
 		raycast->prep_wall_dist = raycast->side_dist_y - raycast->delta_dist_y;
-}
-
-static int	choose_door_img(void)
-{
-	int	time;
-
-	time = get_time() % 20;
-	if (time <= 4)
-		return (4);
-	if (time <= 9)
-		return (5);
-	if (time <= 14)
-		return (6);
-	if (time <= 19)
-		return (7);
-	return (0);
 }
 
 void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d)
@@ -117,9 +105,7 @@ void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d)
 		raycast->wall_x = cub3d->render.pos_x + \
 						raycast->prep_wall_dist * raycast->raydir_x;
 	raycast->wall_x -= floor(raycast->wall_x);
-	if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR)
-		raycast->tex_num = choose_door_img();
-	else if (raycast->side == 0 && raycast->raydir_x > 0)
+	if (raycast->side == 0 && raycast->raydir_x > 0)
 		raycast->tex_num = 0;
 	else if (raycast->side == 0 && raycast->raydir_x <= 0)
 		raycast->tex_num = 1;
