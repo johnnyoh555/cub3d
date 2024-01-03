@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 21:09:16 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 17:11:07 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 12:52:25 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	get_one_line_info(t_info *info, char *str, int y)
 			info->map[y][x] = M_SPAWN_W;
 		if (str[x] == 'D')
 			info->map[y][x] = M_DOOR;
+		if (str[x] == 'C')
+			info->map[y][x] = M_SPRIT;
 		x++;
 	}
 }

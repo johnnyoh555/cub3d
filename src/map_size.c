@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 14:23:48 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 17:12:48 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 12:52:50 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	get_width_height_info(t_info *info, char *str)
 	width = 0;
 	while (str[width] == ' ' || str[width] == '1' || str[width] == '0'
 		|| str[width] == 'N' || str[width] == 'S' || str[width] == 'E'
-		|| str[width] == 'W' || str[width] == 'D')
+		|| str[width] == 'W' || str[width] == 'D' || str[width] == 'C')
 	{
 		if (str[width] == 'N' || str[width] == 'S' || str[width] == 'E'
 			|| str[width] == 'W')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/03 11:55:18 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/03 19:40:36 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,18 @@ static char	*cub3d_texture_idx_to_file(int idx, t_cub3d *cub3d)
 		return ("./door2.xpm");
 	else if (idx == 6)
 		return ("./door3.xpm");
-	else
+	else if (idx == 7)
 		return ("./door4.xpm");
+	else if (idx < 21)
+		return (moon_name1(idx));
+	else if (idx < 34)
+		return (moon_name2(idx));
+	else if (idx < 47)
+		return (moon_name3(idx));
+	else if (idx < 60)
+		return (moon_name4(idx));
+	else
+		return (moon_name5(idx));
 }
 
 static int	cub3d_texture_init(t_cub3d *cub3d)
@@ -61,7 +71,7 @@ static int	cub3d_texture_init(t_cub3d *cub3d)
 	char	*file;
 
 	idx = 0;
-	while (idx < 8)
+	while (idx < 68)
 	{
 		file = cub3d_texture_idx_to_file(idx, cub3d);
 		cub3d->texture[idx].img = mlx_xpm_file_to_image(cub3d->mlx.mlx, file, \

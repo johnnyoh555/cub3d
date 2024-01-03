@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/03 15:18:57 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/03 19:25:58 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	rendering(t_cub3d *cub3d)
 	t_raycast	raycast;
 
 	draw_background(cub3d);
+	draw_moon(cub3d);
 	x = 0;
 	check_door(cub3d);
 	while (x < SCN_WIDTH)
@@ -99,6 +100,8 @@ int	rendering(t_cub3d *cub3d)
 		draw_raycast(&raycast, cub3d, x);
 		if (raycast.door)
 			cal_door(&raycast, cub3d, x);
+		if (raycast.sprit)
+			cal_sprit(&raycast, cub3d, x);
 		x++;
 	}
 	minimap(cub3d);

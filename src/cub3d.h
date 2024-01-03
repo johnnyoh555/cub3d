@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/03 11:55:04 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:01:29 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_raycast
 	int		hit;
 	int		side;
 	int		side_d;
+	int		side_s;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -95,6 +96,8 @@ typedef struct s_raycast
 	double	tex_pos;
 	double	step;
 	int		sprit;
+	int		sprit_x;
+	int		sprit_y;
 	int		door;
 	int		tex_width;
 	int		tex_height;
@@ -139,7 +142,7 @@ typedef struct s_cub3d
 {
 	t_mlx		mlx;
 	t_render	render;
-	t_texture	texture[8];
+	t_texture	texture[68];
 	t_info		info;
 	long		time;
 	int			door_flag;
@@ -202,5 +205,14 @@ void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x);
 
 void	close_door(t_cub3d *cub3d);
 void	open_door(t_cub3d *cub3d);
+
+void	cal_sprit(t_raycast *raycast, t_cub3d *cub3d, int x);
+
+void	draw_moon(t_cub3d *cub3d);
+char	*moon_name1(int idx);
+char	*moon_name2(int idx);
+char	*moon_name3(int idx);
+char	*moon_name4(int idx);
+char	*moon_name5(int idx);
 
 #endif
