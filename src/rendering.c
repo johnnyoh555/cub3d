@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/03 11:44:51 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:18:57 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_raycast(t_raycast *raycast, t_cub3d *cub3d, int x)
 	y = raycast->draw_start;
 	while (y < raycast->draw_end)
 	{
-		raycast->tex_y = (int)raycast->tex_pos & (raycast->tex_height - 1);
+		raycast->tex_y = (int)raycast->tex_pos % raycast->tex_height;
 		raycast->tex_pos += raycast->step;
 		color = *(unsigned int *)(cub3d->texture[raycast->tex_num].addr + \
 				(cub3d->texture[raycast->tex_num].line * raycast->tex_y + \

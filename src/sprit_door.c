@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:47:27 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/03 11:45:28 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:18:50 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 	char			*dst;
 	unsigned int	color;
 
-	raycast->tex_x = (int)(raycast->wall_x * raycast->tex_width) + cub3d->open_door;
+	raycast->tex_x = (int)(raycast->wall_x * raycast->tex_width);
+	raycast->tex_x += cub3d->open_door;
 	raycast->step = 1.0 * raycast->tex_height / raycast->line_height;
 	raycast->tex_pos = raycast->draw_start - SCN_HEIGHT / 2;
 	raycast->tex_pos += raycast->line_height / 2;
@@ -44,7 +45,7 @@ static void	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 		return ;
 	while (y < raycast->draw_end)
 	{
-		raycast->tex_y = (int)raycast->tex_pos & (raycast->tex_height - 1);
+		raycast->tex_y = (int)raycast->tex_pos % raycast->tex_height;
 		raycast->tex_pos += raycast->step;
 		color = *(unsigned int *)(cub3d->texture[raycast->tex_num].addr + \
 				(cub3d->texture[raycast->tex_num].line * raycast->tex_y + \
