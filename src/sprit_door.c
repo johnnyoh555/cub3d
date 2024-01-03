@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprit_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:47:27 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/02 19:28:57 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 11:45:28 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ static void	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 	char			*dst;
 	unsigned int	color;
 
-	raycast->tex_x = (int)(raycast->wall_x * TEXTURE_WIDTH) + cub3d->open_door;
-	raycast->step = 1.0 * TEXTURE_HEIGHT / raycast->line_height;
+	raycast->tex_x = (int)(raycast->wall_x * raycast->tex_width) + cub3d->open_door;
+	raycast->step = 1.0 * raycast->tex_height / raycast->line_height;
 	raycast->tex_pos = raycast->draw_start - SCN_HEIGHT / 2;
 	raycast->tex_pos += raycast->line_height / 2;
 	raycast->tex_pos *= raycast->step;
 	y = raycast->draw_start;
-	if (raycast->tex_x >= TEXTURE_WIDTH)
+	if (raycast->tex_x >= raycast->tex_width)
 		return ;
 	while (y < raycast->draw_end)
 	{
-		raycast->tex_y = (int)raycast->tex_pos & (TEXTURE_HEIGHT - 1);
+		raycast->tex_y = (int)raycast->tex_pos & (raycast->tex_height - 1);
 		raycast->tex_pos += raycast->step;
 		color = *(unsigned int *)(cub3d->texture[raycast->tex_num].addr + \
 				(cub3d->texture[raycast->tex_num].line * raycast->tex_y + \
@@ -73,6 +73,8 @@ void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 						raycast->prep_door_dist * raycast->raydir_x;
 	raycast->wall_x -= floor(raycast->wall_x);
 	raycast->tex_num = choose_door_img();
+	raycast->tex_width = cub3d->texture[raycast->tex_num].width;
+	raycast->tex_height = cub3d->texture[raycast->tex_num].height;
 	draw_door(raycast, cub3d, x);
 }
 

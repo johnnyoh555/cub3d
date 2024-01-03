@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/02 19:17:05 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 11:55:04 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # define SCN_WIDTH 1920
 # define SCN_HEIGHT 1080
-
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
 
 # define C_ANGLE 5
 
@@ -99,6 +96,8 @@ typedef struct s_raycast
 	double	step;
 	int		sprit;
 	int		door;
+	int		tex_width;
+	int		tex_height;
 }	t_raycast;
 
 typedef struct s_texture
@@ -185,6 +184,7 @@ void	move_right(t_cub3d *cub3d);
 
 int		read_mouse(int x, int y, t_cub3d *cub3d);
 
+void	camera_init(t_cub3d *cub3d);
 void	camera_rotate(t_cub3d *cub3d, int dir);
 
 void	raycast_init(t_raycast *raycast, t_cub3d *cub3d, int x);

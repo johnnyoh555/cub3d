@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:27 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 11:55:18 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	cub3d_exit(t_cub3d *cub3d)
 {
+	int	idx;
+
 	mlx_destroy_image(cub3d->mlx.mlx, cub3d->mlx.img);
-	mlx_destroy_image(cub3d->mlx.mlx, cub3d->texture[0].img);
-	mlx_destroy_image(cub3d->mlx.mlx, cub3d->texture[1].img);
-	mlx_destroy_image(cub3d->mlx.mlx, cub3d->texture[2].img);
-	mlx_destroy_image(cub3d->mlx.mlx, cub3d->texture[3].img);
+	idx = 0;
+	while (idx < 8)
+		mlx_destroy_image(cub3d->mlx.mlx, cub3d->texture[idx++].img);
 	mlx_destroy_window(cub3d->mlx.mlx, cub3d->mlx.win);
 	exit(0);
 }
@@ -27,18 +28,7 @@ static void	cub3d_render_init(t_cub3d *cub3d)
 {
 	cub3d->render.pos_x = cub3d->info.start_y + 0.5;
 	cub3d->render.pos_y = cub3d->info.start_x + 0.5;
-	cub3d->render.dir_x = 0;
-	cub3d->render.dir_y = 0;
-	if (cub3d->info.start_direction == M_SPAWN_N)
-		cub3d->render.dir_x = -1;
-	else if (cub3d->info.start_direction == M_SPAWN_S)
-		cub3d->render.dir_x = 1;
-	else if (cub3d->info.start_direction == M_SPAWN_E)
-		cub3d->render.dir_y = 1;
-	else
-		cub3d->render.dir_y = -1;
-	cub3d->render.plane_x = 0;
-	cub3d->render.plane_y = 1;
+	camera_init(cub3d);
 	cub3d->door_flag = 1;
 	cub3d->time = 0;
 	cub3d->open_door = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:04:26 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/02 19:20:29 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 11:37:31 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,6 @@ void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d)
 		raycast->tex_num = 2;
 	else if (raycast->side == 1 && raycast->raydir_y >= 0)
 		raycast->tex_num = 3;
+	raycast->tex_width = cub3d->texture[raycast->tex_num].width;
+	raycast->tex_height = cub3d->texture[raycast->tex_num].height;
 }

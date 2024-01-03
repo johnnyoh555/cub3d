@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_motion.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:04:54 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/02 19:26:36 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/03 11:43:45 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	close_door(t_cub3d *cub3d)
 
 void	open_door(t_cub3d *cub3d)
 {
-	if (cub3d->open_door < TEXTURE_WIDTH)
+	if (cub3d->open_door < cub3d->texture[4].width)
 		cub3d->open_door += 4;
-	if (cub3d->open_door == TEXTURE_WIDTH)
+	if (cub3d->open_door == cub3d->texture[4].width)
 	{
 		cub3d->move_door = 0;
 		cub3d->time = get_time();
