@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:21:12 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/04 15:18:18 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:29:45 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sprite_init(t_cub3d *cub3d, t_sprite *sprite)
 	sprite->transform_x = sprite->inv_det * (cub3d->render.dir_y * sprite->x \
 					- cub3d->render.dir_x * sprite->y);
 	sprite->transform_y = sprite->inv_det * (-cub3d->render.plane_y * \
-					sprite->x - cub3d->render.plane_x * sprite->y);
+					sprite->x + cub3d->render.plane_x * sprite->y);
 	sprite->screen_x = (int)((SCN_WIDTH / 2) * (1 + sprite->transform_x \
 					/ sprite->transform_y));
 	sprite->height = abs((int)(SCN_HEIGHT / sprite->transform_y));
@@ -38,8 +38,6 @@ void	sprite_init(t_cub3d *cub3d, t_sprite *sprite)
 	sprite->draw_e_x = sprite->width / 2 + sprite->screen_x;
 	if (sprite->draw_e_x >= SCN_WIDTH)
 		sprite->draw_e_x = SCN_WIDTH - 1;
-	printf("draw s x : %d, draw e x : %d\n", sprite->draw_s_x, sprite->draw_e_x);
-	printf("draw s y : %d, draw e y : %d\n", sprite->draw_s_y, sprite->draw_e_y);;
 }
 
 void	set_texture(t_cub3d *cub3d, t_sprite *sprite, int x, int y)
