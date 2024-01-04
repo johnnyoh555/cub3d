@@ -6,7 +6,7 @@
 /*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:07:42 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/27 11:15:37 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:24:10 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	cub3d = ft_calloc(1, sizeof(t_cub3d));
 	ft_memset(cub3d, 0, sizeof(t_cub3d));
 	init_info(&cub3d->info, ac, av);
+	find_sprite(&cub3d->info);
 	if (cub3d_init(cub3d) == 1)
 		err_seq("texture", "load image fail", 1, 0);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/03 20:01:29 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 15:20:20 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_info
 	int		**map;
 	int		start_x;
 	int		start_y;
+	double	sprite_x;
+	double	sprite_y;
 	int		start_direction;
 }	t_info;
 
@@ -101,7 +103,27 @@ typedef struct s_raycast
 	int		door;
 	int		tex_width;
 	int		tex_height;
+	double	zbuffer[SCN_WIDTH];
 }	t_raycast;
+
+typedef struct s_sprite
+{
+	double	x;
+	double	y;
+	double	inv_det;
+	double	transform_x;
+	double	transform_y;
+	int		screen_x;
+	int		height;
+	int		width;
+	int		draw_s_x;
+	int		draw_e_x;
+	int		draw_s_y;
+	int		draw_e_y;
+	int		tex_num;
+	int		tex_x;
+	int		tex_y;
+}	t_sprite;
 
 typedef struct s_texture
 {
@@ -196,6 +218,9 @@ void	raycast_find_wall(t_raycast *raycast, t_cub3d *cub3d);
 void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d);
 
 int		rendering(t_cub3d *cub3d);
+
+void	find_sprite(t_info *info);
+void	sprite(t_raycast *raycast, t_cub3d *cub3d);
 
 // minimap.c
 void	minimap(t_cub3d *cub3d);

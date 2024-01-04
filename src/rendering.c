@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/03 19:25:58 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 15:20:11 by sungyoon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ int	rendering(t_cub3d *cub3d)
 		draw_raycast(&raycast, cub3d, x);
 		if (raycast.door)
 			cal_door(&raycast, cub3d, x);
-		if (raycast.sprit)
-			cal_sprit(&raycast, cub3d, x);
+		raycast.zbuffer[x] = raycast.prep_wall_dist;
 		x++;
 	}
+	sprite(&raycast, cub3d);
 	minimap(cub3d);
 	mlx_put_image_to_window(cub3d->mlx.mlx, cub3d->mlx.win, \
 							cub3d->mlx.img, 0, 0);
