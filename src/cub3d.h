@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/04 15:20:20 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:06:10 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,11 @@ typedef struct s_raycast
 	double	delta_dist_y;
 	double	prep_wall_dist;
 	double	prep_door_dist;
-	double	prep_sprit_dist;
 	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
 	int		side_d;
-	int		side_s;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -97,9 +95,6 @@ typedef struct s_raycast
 	int		tex_y;
 	double	tex_pos;
 	double	step;
-	int		sprit;
-	int		sprit_x;
-	int		sprit_y;
 	int		door;
 	int		tex_width;
 	int		tex_height;
@@ -225,7 +220,7 @@ void	sprite(t_raycast *raycast, t_cub3d *cub3d);
 // minimap.c
 void	minimap(t_cub3d *cub3d);
 
-void	check_sprit_door(t_raycast *raycast, t_cub3d *cub3d);
+void	check_if_door(t_raycast *raycast, t_cub3d *cub3d);
 void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x);
 
 void	close_door(t_cub3d *cub3d);
@@ -234,6 +229,8 @@ void	open_door(t_cub3d *cub3d);
 void	cal_sprit(t_raycast *raycast, t_cub3d *cub3d, int x);
 
 void	draw_moon(t_cub3d *cub3d);
+char	*choose_moon_img(int idx);
+
 char	*moon_name1(int idx);
 char	*moon_name2(int idx);
 char	*moon_name3(int idx);

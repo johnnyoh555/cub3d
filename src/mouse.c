@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:00:23 by sungyoon          #+#    #+#             */
-/*   Updated: 2023/12/27 16:55:31 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:12:02 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	read_mouse(int x, int y, t_cub3d *cub3d)
 	int	dir;
 
 	dir = -1;
-	if (cub3d->render.pre_x - x < -1)
+	if (cub3d->render.pre_x - x < -3)
 		dir = 1;
-	else if (cub3d->render.pre_x - x > 1)
+	else if (cub3d->render.pre_x - x > 3)
 		dir = 0;
 	else
 	{

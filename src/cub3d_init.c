@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/03 19:40:36 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 16:09:24 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,16 @@ static char	*cub3d_texture_idx_to_file(int idx, t_cub3d *cub3d)
 	else if (idx == 3)
 		return (cub3d->info.we_file);
 	else if (idx == 4)
-		return ("./door1.xpm");
+		return ("./img/door1.xpm");
 	else if (idx == 5)
-		return ("./door2.xpm");
+		return ("./img/door2.xpm");
 	else if (idx == 6)
-		return ("./door3.xpm");
+		return ("./img/door3.xpm");
 	else if (idx == 7)
-		return ("./door4.xpm");
-	else if (idx < 21)
-		return (moon_name1(idx));
-	else if (idx < 34)
-		return (moon_name2(idx));
-	else if (idx < 47)
-		return (moon_name3(idx));
-	else if (idx < 60)
-		return (moon_name4(idx));
-	else
-		return (moon_name5(idx));
+		return ("./img/door4.xpm");
+	else if (idx < 68)
+		return (choose_moon_img(idx));
+	return (0);
 }
 
 static int	cub3d_texture_init(t_cub3d *cub3d)

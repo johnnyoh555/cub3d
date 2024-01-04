@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:04:26 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/03 11:37:31 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:06:27 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	raycast_init(t_raycast *raycast, t_cub3d *cub3d, int x)
 		raycast->delta_dist_y = fabs(1 / raycast->raydir_y);
 	raycast->hit = 0;
 	raycast->door = 0;
-	raycast->sprit = 0;
 }
 
 void	raycast_cal_side_dist(t_raycast *raycast, t_cub3d *cub3d)
@@ -76,9 +75,8 @@ void	raycast_find_wall(t_raycast *raycast, t_cub3d *cub3d)
 			raycast->map_y += raycast->step_y;
 			raycast->side = 1;
 		}
-		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_SPRIT
-			|| (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR))
-			check_sprit_door(raycast, cub3d);
+		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR)
+			check_if_door(raycast, cub3d);
 		if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_WALL)
 			raycast->hit = 1;
 	}

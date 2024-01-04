@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:47:27 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/03 18:09:22 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 15:49:51 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,8 @@ void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 	draw_door(raycast, cub3d, x);
 }
 
-void	check_sprit_door(t_raycast *raycast, t_cub3d *cub3d)
+void	check_if_door(t_raycast *raycast, t_cub3d *cub3d)
 {
-	if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_SPRIT
-		&& raycast->door == 0 && raycast->sprit == 0)
-	{
-		raycast->prep_sprit_dist = sqrt(pow((double)raycast->map_x + 0.5
-					- cub3d->render.pos_x, 2) + pow((double)raycast->map_y
-					+ 0.5 - cub3d->render.pos_y, 2));
-		raycast->side_s = raycast->side;
-		raycast->sprit = 1;
-	}
 	if (cub3d->info.map[raycast->map_x][raycast->map_y] == M_DOOR
 		&& raycast->door == 0)
 	{
