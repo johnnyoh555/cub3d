@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:08:56 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/04 16:06:10 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:53:56 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ typedef enum e_mapinfo
 	M_SPAWN_E,
 	M_SPAWN_W,
 	M_DOOR,
-	M_SPRIT,
+	M_SPRITE,
 }	t_mapinfo;
 
 typedef struct s_info
 {
+	int		sprite;
 	int		line;
 	int		cnt;
 	char	*mapname;
@@ -99,6 +100,7 @@ typedef struct s_raycast
 	int		tex_width;
 	int		tex_height;
 	double	zbuffer[SCN_WIDTH];
+	double	dbuffer[SCN_WIDTH];
 }	t_raycast;
 
 typedef struct s_sprite
@@ -159,7 +161,7 @@ typedef struct s_cub3d
 {
 	t_mlx		mlx;
 	t_render	render;
-	t_texture	texture[68];
+	t_texture	texture[69];
 	t_info		info;
 	long		time;
 	int			door_flag;
@@ -214,23 +216,26 @@ void	raycast_cal_and_sel_wall(t_raycast *raycast, t_cub3d *cub3d);
 
 int		rendering(t_cub3d *cub3d);
 
+// sprite.c
 void	find_sprite(t_info *info);
 void	sprite(t_raycast *raycast, t_cub3d *cub3d);
 
 // minimap.c
 void	minimap(t_cub3d *cub3d);
 
+// door.c
 void	check_if_door(t_raycast *raycast, t_cub3d *cub3d);
-void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x);
+int		cal_door(t_raycast *raycast, t_cub3d *cub3d, int x);
 
+// door_motion.c
 void	close_door(t_cub3d *cub3d);
 void	open_door(t_cub3d *cub3d);
 
-void	cal_sprit(t_raycast *raycast, t_cub3d *cub3d, int x);
-
+// moon.c
 void	draw_moon(t_cub3d *cub3d);
 char	*choose_moon_img(int idx);
 
+// moon_name.c
 char	*moon_name1(int idx);
 char	*moon_name2(int idx);
 char	*moon_name3(int idx);

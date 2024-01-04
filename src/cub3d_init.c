@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 15:19:25 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/04 16:09:24 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:44:15 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	cub3d_exit(t_cub3d *cub3d)
 
 	mlx_destroy_image(cub3d->mlx.mlx, cub3d->mlx.img);
 	idx = 0;
-	while (idx < 8)
+	while (idx < 69)
 		mlx_destroy_image(cub3d->mlx.mlx, cub3d->texture[idx++].img);
 	mlx_destroy_window(cub3d->mlx.mlx, cub3d->mlx.win);
 	exit(0);
@@ -55,7 +55,7 @@ static char	*cub3d_texture_idx_to_file(int idx, t_cub3d *cub3d)
 		return ("./img/door4.xpm");
 	else if (idx < 68)
 		return (choose_moon_img(idx));
-	return (0);
+	return ("./img/cute mushroom walk.xpm");
 }
 
 static int	cub3d_texture_init(t_cub3d *cub3d)
@@ -64,7 +64,7 @@ static int	cub3d_texture_init(t_cub3d *cub3d)
 	char	*file;
 
 	idx = 0;
-	while (idx < 68)
+	while (idx < 69)
 	{
 		file = cub3d_texture_idx_to_file(idx, cub3d);
 		cub3d->texture[idx].img = mlx_xpm_file_to_image(cub3d->mlx.mlx, file, \

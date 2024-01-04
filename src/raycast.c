@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:04:26 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/04 16:06:27 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:45:47 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	raycast_init(t_raycast *raycast, t_cub3d *cub3d, int x)
 		raycast->delta_dist_y = fabs(1 / raycast->raydir_y);
 	raycast->hit = 0;
 	raycast->door = 0;
+	raycast->dbuffer[x] = 0;
 }
 
 void	raycast_cal_side_dist(t_raycast *raycast, t_cub3d *cub3d)

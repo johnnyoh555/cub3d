@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:21:12 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/04 16:19:25 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:53:56 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	set_texture(t_cub3d *cub3d, t_sprite *sprite, int x, int y)
 	}
 }
 
-void	draw_sprite(t_raycast *raycast, t_cub3d *cub3d, t_sprite *sprite)
+void	draw_sprite(t_raycast *raycast, t_cub3d *cub3d, t_sprite *sprite,
+		int time)
 {
 	int				x;
 	int				y;
@@ -69,10 +70,12 @@ void	draw_sprite(t_raycast *raycast, t_cub3d *cub3d, t_sprite *sprite)
 	while (x < sprite->draw_e_x)
 	{
 		sprite->tex_x = (int)(256 * (x - (-sprite->width / 2 \
-			+ sprite->screen_x)) * cub3d->texture[sprite->tex_num].width \
-			/ sprite->width) / 256;
+			+ sprite->screen_x)) * cub3d->texture[sprite->tex_num].width / 4 \
+			/ sprite->width) / 256 + time * 48;
 		if (sprite->transform_y > 0 && x > 0 && x < SCN_WIDTH \
-			&& sprite->transform_y < raycast->zbuffer[x])
+			&& sprite->transform_y < raycast->zbuffer[x]
+			&& ((raycast->dbuffer[x] && sprite->transform_y \
+			< raycast->dbuffer[x]) || raycast->dbuffer[x] == 0))
 		{
 			y = sprite->draw_s_y;
 			while (y < sprite->draw_e_y)
@@ -96,7 +99,7 @@ void	find_sprite(t_info *info)
 		y = 0;
 		while (y < info->width)
 		{
-			if (info->map[x][y] == M_SPRIT)
+			if (info->map[x][y] == M_SPRITE)
 			{
 				info->sprite_x = x + 0.5;
 				info->sprite_y = y + 0.5;
@@ -114,7 +117,7 @@ void	sprite(t_raycast *raycast, t_cub3d *cub3d)
 	t_sprite	sprite;
 
 	sprite_init(cub3d, &sprite);
-	time = get_time();
-	sprite.tex_num = time % 60 + 8;
-	draw_sprite(raycast, cub3d, &sprite);
+	time = get_time() / 2 % 4;
+	sprite.tex_num = 68;
+	draw_sprite(raycast, cub3d, &sprite, time);
 }

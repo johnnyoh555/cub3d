@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:53:08 by sungyoon          #+#    #+#             */
-/*   Updated: 2024/01/04 15:20:11 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:58:53 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int	rendering(t_cub3d *cub3d)
 		raycast_cal_and_sel_wall(&raycast, cub3d);
 		draw_raycast(&raycast, cub3d, x);
 		if (raycast.door)
-			cal_door(&raycast, cub3d, x);
+			if (cal_door(&raycast, cub3d, x))
+				raycast.dbuffer[x] = raycast.prep_door_dist;
 		raycast.zbuffer[x] = raycast.prep_wall_dist;
 		x++;
 	}

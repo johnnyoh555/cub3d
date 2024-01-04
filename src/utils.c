@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:19:59 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/29 20:23:09 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:55:19 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,6 @@ int	err_seq(char *str, char *err, int ex, int flag)
 	if (flag)
 		return (ex);
 	exit(ex);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	unsigned char	*str1;
-	unsigned char	*str2;
-
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (1)
-	{
-		if (*str1 == 0 && *str2 == 0)
-			return (0);
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
-	}
-	return (0);
 }
 
 long	get_time(void)

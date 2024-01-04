@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprit_door.c                                       :+:      :+:    :+:   */
+/*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:47:27 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/04 15:49:51 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:02:19 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	choose_door_img(void)
 	return (0);
 }
 
-static void	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
+static int	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 {
 	int				y;
 	char			*dst;
@@ -40,10 +40,10 @@ static void	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 	raycast->tex_pos = raycast->draw_start - SCN_HEIGHT / 2;
 	raycast->tex_pos += raycast->line_height / 2;
 	raycast->tex_pos *= raycast->step;
-	y = raycast->draw_start;
+	y = raycast->draw_start - 1;
 	if (raycast->tex_x >= raycast->tex_width)
-		return ;
-	while (y < raycast->draw_end)
+		return (0);
+	while (++y < raycast->draw_end)
 	{
 		raycast->tex_y = (int)raycast->tex_pos % raycast->tex_height;
 		raycast->tex_pos += raycast->step;
@@ -53,11 +53,11 @@ static void	draw_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 		dst = cub3d->mlx.addr + \
 			(y * cub3d->mlx.line + x * (cub3d->mlx.bpp / 8));
 		*(unsigned int *)dst = color;
-		y++;
 	}
+	return (1);
 }
 
-void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x)
+int	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 {
 	raycast->line_height = (int)(SCN_HEIGHT / raycast->prep_door_dist);
 	raycast->draw_start = -raycast->line_height / 2 + SCN_HEIGHT / 2;
@@ -76,7 +76,7 @@ void	cal_door(t_raycast *raycast, t_cub3d *cub3d, int x)
 	raycast->tex_num = choose_door_img();
 	raycast->tex_width = cub3d->texture[raycast->tex_num].width;
 	raycast->tex_height = cub3d->texture[raycast->tex_num].height;
-	draw_door(raycast, cub3d, x);
+	return (draw_door(raycast, cub3d, x));
 }
 
 void	check_if_door(t_raycast *raycast, t_cub3d *cub3d)

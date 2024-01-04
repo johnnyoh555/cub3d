@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 18:23:03 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/02 20:18:41 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 18:53:56 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	check_when_path(t_info *info, int x, int y)
 {
 	if (info->map[y][x] == M_DOOR)
 		check_valid_door(info, x, y);
+	if (info->map[y][x] == M_SPRITE)
+		info->sprite++;
 	if (!(info->map[y][x - 1] >= M_WALL))
 		err_seq("map", "not a valid map", 1, 0);
 	if (!(info->map[y - 1][x - 1] >= M_WALL))

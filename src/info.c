@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungyoon <sungyoon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 08:38:28 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/25 17:58:52 by sungyoon         ###   ########.fr       */
+/*   Updated: 2024/01/04 18:53:22 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,6 @@ void	init_info(t_info *info, int ac, char **av)
 	check_map_file(info);
 	make_map(info);
 	check_valid_map(info);
+	if (info->sprite > 1)
+		err_seq("sprite", "we can handle only one", 1, 0);
 }
