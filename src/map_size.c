@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 14:23:48 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/03 12:52:50 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 19:33:03 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	get_width_height_info(t_info *info, char *str)
 		width++;
 	}	
 	if (str[width] != '\n' && str[width] != 0)
-		err_seq("map ", "not a vaild element for map", 1, 0);
+		err_seq("map", "not a vaild element for map", 1, 0);
 	width--;
 	while (str[width] == ' ')
 		width--;
@@ -57,6 +57,6 @@ void	check_map_size(t_info *info, char *str)
 		if (flag == 0)
 			flag = 1;
 	if (flag == 2)
-		err_seq("map ", "not a vaild map", 1, 0);
+		err_seq("map", "not a vaild map", 1, 0);
 	get_width_height_info(info, str);
 }

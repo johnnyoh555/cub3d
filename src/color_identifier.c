@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:21:03 by jooh              #+#    #+#             */
-/*   Updated: 2023/12/24 18:09:23 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/04 19:40:47 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,14 @@ static int	change_color_to_int(char *str)
 
 void	identifier_f(t_info *info, char *str)
 {
-	if (info->f_color != 0)
+	if (info->f_flag != 0)
 		err_seq("map", "F identifier overlapped", 1, 0);
 	while (*str == ' ')
 		str++;
 	if (*str == 0)
 		err_seq("map", "no infomation for F identifier", 1, 0);
 	info->f_color = change_color_to_int(str);
+	info->f_flag = 1;
 	info->cnt++;
 }
 
@@ -78,5 +79,6 @@ void	identifier_c(t_info *info, char *str)
 	if (*str == 0)
 		err_seq("map", "no infomation for C identifier", 1, 0);
 	info->c_color = change_color_to_int(str);
+	info->c_flag = 1;
 	info->cnt++;
 }
