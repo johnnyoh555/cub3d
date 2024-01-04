@@ -5,30 +5,44 @@ SRC			= all_directions color_identifier info \
 			cub3d_init mouse camera keyboard move rendering\
 			raycast minimap door door_motion sprite moon_name moon
 SRCS		= $(addsuffix .c, $(addprefix ./src/, $(SRC)))
+SRCS_B		= $(addsuffix _bonus.c, $(addprefix ./bonus/, $(SRC)))
 OBJS		= $(SRCS:.c=.o)
-NAME		= cub3d
+OBJS_B		= $(SRCS_B:.c=.o)
+NAME		= cub3D
+NAME_B		= cub3D_bonus
 LIBFT_DIR 	= libft
 LIBFT 		= libft.a
 
-all : $(NAME)
+all			: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME)		: $(OBJS)
 	make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) -o $@ $^ -lmlx -framework Appkit -framework OpenGL -lft -L./$(LIBFT_DIR)
 
-$(OBJS): %.o : %.c
+bonus		: $(NAME_B)
+
+$(NAME_B)	: $(OBJS_B)
+	make -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) -o $(NAME_B) $^ -lmlx -framework Appkit -framework OpenGL -lft -L./$(LIBFT_DIR)
+
+$(OBJS)		: %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean :
+$(OBJS_B)	: %.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean		:
 	make -C $(LIBFT_DIR) clean
 	rm -f $(OBJS)
+	rm -f $(OBJS_B)
 
-fclean : clean
+fclean		: clean
 	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
+	rm -f $(NAME_B)
 
-re : 
+re			: 
 	make fclean
 	make all
 
-.PHONY : all clean fclean re
+.PHONY		: all clean fclean re bonus
