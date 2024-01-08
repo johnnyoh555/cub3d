@@ -6,7 +6,7 @@
 /*   By: jooh <jooh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:21:03 by jooh              #+#    #+#             */
-/*   Updated: 2024/01/04 19:46:47 by jooh             ###   ########.fr       */
+/*   Updated: 2024/01/08 14:34:36 by jooh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static char	*check_isnum(char **str, int flag)
 			return ("-1");
 		i++;
 	}
+	if (i == 0)
+		return ("-1");
 	if (flag == 1)
 		if (tmp[i] != 0 && tmp[i] != '\n')
 			return ("-1");

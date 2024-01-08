@@ -1,11 +1,11 @@
 NO ./img/wall1.xpm
 SO ./img/wall2.xpm
 WE ./img/wall3.xpm
-EA ./img/wall4.xpm
+EA                  ./img/wall4.xpm
 
+                          
 
-
-F 129,96,79
+             F                         129,96,79
 C 51,51,102
 
 
